@@ -28,18 +28,47 @@ COURSE_ORDER=[
 ]
 
 SPEEDRUN_DOT_COM_ORDER=[
-  ""
+  "48 Tracks 150cc Items",      "48 Tracks 200cc Items",      "48 Tracks 150cc No Items",      "48 Tracks 200cc No Items",
+  "48 BCP Tracks 150cc Items",  "48 BCP Tracks 200cc Items",  "48 BCP Tracks 150cc No Items",  "48 BCP Tracks 200cc No Items",
+  "96 Tracks 150cc Items",      "96 Tracks 200cc Items",      "96 Tracks 150cc No Items",      "96 Tracks 200cc No Items",
+  "Nitro Tracks 150cc Items",   "Nitro Tracks 200cc Items",   "Nitro Tracks 150cc No Items",   "Nitro Tracks 200cc No Items",
+  "Retro Tracks 150cc Items",   "Retro Tracks 200cc Items",   "Retro Tracks 150cc No Items",   "Retro Tracks 200cc No Items",
+  "Bonus Tracks 150cc Items",   "Bonus Tracks 200cc Items",   "Bonus Tracks 150cc No Items",   "Bonus Tracks 200cc No Items",
+  "BCP Waves 1+2 150cc Items",  "BCP Waves 1+2 200cc Items",  "BCP Waves 1+2 150cc No Items",  "BCP Waves 1+2 200cc No Items",
+  "BCP Waves 3+4 150cc Items",  "BCP Waves 3+4 200cc Items",  "BCP Waves 3+4 150cc No Items",  "BCP Waves 3+4 200cc No Items",
+  "BCP Waves 5+6 150cc Items",  "BCP Waves 5+6 200cc Items",  "BCP Waves 5+6 150cc No Items",  "BCP Waves 5+6 200cc No Items"
 ]
 
 CHARACTERS=[
-
+  "Mario",            "Luigi",            "Peach",            "Daisy",            "Rosalina",         "Tanooki Mario",    "Cat Peach",        f"Birdo",            
+  f"Yoshi",           "Toad",             "Koopa Troopa",     f"Shy Guy",         "Lakitu",           "Toadette",         "King Boo",         "Petey Piranha",    
+  "Baby Mario",       "Baby Luigi",       "Baby Peach",       "Baby Daisy",       "Baby Rosalina",    f"Metal Mario",     "Pink Gold Peach",  "Wiggler",
+  "Wario",            "Waluigi",          "Donkey Kong",      "Bowser",           "Dry Bones",        "Bowser Jr.",       "Dry Bowser",       "Kamek",
+  "Lemmy",            "Larry",            "Wendy",            "Ludwig",           "Iggy",             "Roy",              "Morton",           "Peachette",
+  f"Inkling",         f"Villager",        "Isabelle",         f"Link",            "Diddy Kong",       "Funky Kong",       "Pauline",          f"Mii"
 ]
 KARTS=[
-
+  "Standard Kart",    "Pipe Frame",       "Mach 8",           "Steel Driver",     # Karts
+  "Cat Cruiser",      "Circuit Special",  "Tri-Speeder",      "Badwagon",
+  "Prancer",          "Biddybuggy",       "Landship",         "Sneeker",
+  "Sports Coupe",     "Gold Standard",    "GLA",              "W-25 Silver Arrow",
+  "300-SL Roadster",  "Blue Falcon",      "Tanooki Kart",     "B Dasher",
+  "Streetle",         "P-Wing",           "Koopa Clown",
+  
+  "Standard Bike",    "Comet",            "Sport Bike",       "The Duke",         # Bikes
+  "Flame Rider",      "Varmint",          "Mr. Scooty",       "Jet Bike",
+  "Yoshi Bike",       "Master Cycle",     "Master Cycle Zero","City Tripper",
+  "Standard ATV",     "Wild Wiggler",     "Teddy Buggy",      "Bone Rattler",
+  "Splat Buggy",      "Inkstriker"
 ]
 WHEELS=[
-
+  "Standard",         "Monster",          "Roller",           "Slim",             "Slick",            
+  "Metal",            "Button",           "Off-Road",         "Sponge",           "Wood",             "Cushion",
+  "Blue Standard",    "Hot Monster",      "Azure Roller",     "Crimzon Slim",     "Cyber Slick",      
+  "Retro Off-Road"    "Gold Tires",       "GLA Tires",        "Triforce Tires",   "Ancient Tires",    "Leaf Tires"
 ]
 WINGS=[
-  
+  "Super Glider",     "Cloud Glider",     "Wario Wing",       "Waddle Wing",      "Peach Parasol",
+  "Parachute",        "Parafoil",         "Flower Glider",    "Bowser Kite",      "Plane Glider",
+  "MKTV Parafoil",    "Gold Glider",      "Hylian Kite",      "Paraglider",       "Paper Glider"
 ]
