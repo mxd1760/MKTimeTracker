@@ -30,3 +30,16 @@ COURSE_ORDER=[
 SPEEDRUN_DOT_COM_ORDER=[
   ""
 ]
+
+CHARACTERS=[
+
+]
+KARTS=[
+
+]
+WHEELS=[
+
+]
+WINGS=[
+  
+]
