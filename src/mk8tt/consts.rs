@@ -240,6 +240,178 @@ impl Character{
         Character::Mii(x, y)      => 47+1_000*x as usize + 10_000*y as usize,
     }
   }
+  pub fn from_str(s:&str) -> Option<Character>{
+    let n = s.parse::<usize>().unwrap();
+    for i in Character::all(){
+      if i.value() == n{
+        return Some(i);
+      }
+    }
+    return None;
+  }
+  fn all()->Vec<Character>{
+    return vec![
+        Character::Mario,
+        Character::Luigi,
+        Character::Peach,
+        Character::Daisy,
+        Character::Rosalina,
+        Character::TanookiMario,
+        Character::CatPeach,
+        Character::Toad,
+        Character::KoopaTroopa,
+        Character::Lakitu,
+        Character::Toadette,
+        Character::KingBoo,
+        Character::PeteyPiranha,
+        Character::BabyMario,
+        Character::BabyLuigi,
+        Character::BabyPeach,
+        Character::BabyDaisy,
+        Character::BabyRosalina,
+        Character::MetalMario(0),
+        Character::MetalMario(1),
+        Character::PinkGoldPeach,
+        Character::Wiggler,
+        Character::Wario,
+        Character::Waluigi,
+        Character::DonkeyKong,
+        Character::Bowser,
+        Character::DryBones,
+        Character::BowserJr,
+        Character::DryBowser,
+        Character::Kamek,
+        Character::Lemmy,
+        Character::Larry,
+        Character::Wendy,
+        Character::Ludwig,
+        Character::Iggy,
+        Character::Roy,
+        Character::Morton,
+        Character::Peachette,
+        Character::Inkling(0),
+        Character::Inkling(1),
+        Character::Inkling(2),
+        Character::Inkling(3),
+        Character::Inkling(4),
+        Character::Inkling(5),
+        Character::Villager(0),
+        Character::Villager(1),
+        Character::Isabelle,
+        Character::Link(0),
+        Character::Link(1),
+        Character::DiddyKong,
+        Character::FunkyKong,
+        Character::Pauline,
+        Character::ShyGuy(0),
+        Character::ShyGuy(1),
+        Character::ShyGuy(2),
+        Character::ShyGuy(3),
+        Character::ShyGuy(4),
+        Character::ShyGuy(5),
+        Character::ShyGuy(6),
+        Character::ShyGuy(7),
+        Character::ShyGuy(8),
+        Character::Birdo(0),
+        Character::Birdo(1),
+        Character::Birdo(2),
+        Character::Birdo(3),
+        Character::Birdo(4),
+        Character::Birdo(5),
+        Character::Birdo(6),
+        Character::Birdo(7),
+        Character::Birdo(8),
+        Character::Yoshi(0),
+        Character::Yoshi(1),
+        Character::Yoshi(2),
+        Character::Yoshi(3),
+        Character::Yoshi(4),
+        Character::Yoshi(5),
+        Character::Yoshi(6),
+        Character::Yoshi(7),
+        Character::Yoshi(8),
+        Character::Mii(0, 0),
+        Character::Mii(0, 1),
+        Character::Mii(0, 2),
+        Character::Mii(0, 3),
+        Character::Mii(0, 4),
+        Character::Mii(0, 5),
+        Character::Mii(0, 6),
+        Character::Mii(0, 7),
+        Character::Mii(0, 8),
+        Character::Mii(1, 0),
+        Character::Mii(1, 1),
+        Character::Mii(1, 2),
+        Character::Mii(1, 3),
+        Character::Mii(1, 4),
+        Character::Mii(1, 5),
+        Character::Mii(1, 6),
+        Character::Mii(1, 7),
+        Character::Mii(1, 8),
+        Character::Mii(2, 0),
+        Character::Mii(2, 1),
+        Character::Mii(2, 2),
+        Character::Mii(2, 3),
+        Character::Mii(2, 4),
+        Character::Mii(2, 5),
+        Character::Mii(2, 6),
+        Character::Mii(2, 7),
+        Character::Mii(2, 8),
+        Character::Mii(3, 0),
+        Character::Mii(3, 1),
+        Character::Mii(3, 2),
+        Character::Mii(3, 3),
+        Character::Mii(3, 4),
+        Character::Mii(3, 5),
+        Character::Mii(3, 6),
+        Character::Mii(3, 7),
+        Character::Mii(3, 8),
+        Character::Mii(4, 0),
+        Character::Mii(4, 1),
+        Character::Mii(4, 2),
+        Character::Mii(4, 3),
+        Character::Mii(4, 4),
+        Character::Mii(4, 5),
+        Character::Mii(4, 6),
+        Character::Mii(4, 7),
+        Character::Mii(4, 8),
+        Character::Mii(5, 0),
+        Character::Mii(5, 1),
+        Character::Mii(5, 2),
+        Character::Mii(5, 3),
+        Character::Mii(5, 4),
+        Character::Mii(5, 5),
+        Character::Mii(5, 6),
+        Character::Mii(5, 7),
+        Character::Mii(5, 8),
+        Character::Mii(6, 0),
+        Character::Mii(6, 1),
+        Character::Mii(6, 2),
+        Character::Mii(6, 3),
+        Character::Mii(6, 4),
+        Character::Mii(6, 5),
+        Character::Mii(6, 6),
+        Character::Mii(6, 7),
+        Character::Mii(6, 8),
+        Character::Mii(7, 0),
+        Character::Mii(7, 1),
+        Character::Mii(7, 2),
+        Character::Mii(7, 3),
+        Character::Mii(7, 4),
+        Character::Mii(7, 5),
+        Character::Mii(7, 6),
+        Character::Mii(7, 7),
+        Character::Mii(7, 8),
+        Character::Mii(8, 0),
+        Character::Mii(8, 1),
+        Character::Mii(8, 2),
+        Character::Mii(8, 3),
+        Character::Mii(8, 4),
+        Character::Mii(8, 5),
+        Character::Mii(8, 6),
+        Character::Mii(8, 7),
+        Character::Mii(8, 8),
+  ]}
 }
 
 #[derive(PartialEq, Eq,Clone,Copy)]
@@ -303,6 +475,60 @@ impl Kart{
         Kart::Inkstriker      => 40,
     }
   }
+  pub fn from_str(s:&str)->Option<Kart>{
+    let n = s.parse::<usize>().unwrap();
+    for i in Kart::all(){
+      if i.value() == n{
+        return Some(i);
+      }
+    }
+    return None;
+  }
+  fn all() -> Vec<Kart>{
+    return vec![   
+        Kart::StandardKart,
+        Kart::PipeFrame,
+        Kart::Mach8,
+        Kart::SteelDriver,
+        Kart::CatCruiser,
+        Kart::CircuitSpecial,
+        Kart::TriSpeeder,
+        Kart::Badwagon,
+        Kart::Prancer,
+        Kart::Biddybuggy,
+        Kart::Landship,
+        Kart::Sneeker,
+        Kart::SportsCoupe,
+        Kart::GoldStandard,
+        Kart::GLA,
+        Kart::W25SilverArrow,
+        Kart::_300SLRoadster,
+        Kart::BlueFalcon,
+        Kart::TanookiKart,
+        Kart::BDasher,
+        Kart::Streetle,
+        Kart::PWing,
+        Kart::KoopaClown,
+        Kart::StandardBike,
+        Kart::Comet,
+        Kart::SportBike,
+        Kart::TheDuke,
+        Kart::FlameRider,
+        Kart::Varmint,
+        Kart::MrScooty,
+        Kart::JetBike,
+        Kart::YoshiBike,
+        Kart::MasterCycle,
+        Kart::MasterCycleZero,
+        Kart::CityTripper,
+        Kart::StandardATV,
+        Kart::WildWiggler,
+        Kart::TeddyBuggy,
+        Kart::BoneRattler,
+        Kart::SplatBuggy,
+        Kart::Inkstriker,
+    ]
+  }
 }
 
 #[derive(PartialEq, Eq,Clone,Copy)]
@@ -339,6 +565,41 @@ impl Wheel{
         Wheel::LeafTires      => 21,
     }
   }
+  pub fn from_str(s:&str)->Option<Wheel>{
+    let n = s.parse::<usize>().unwrap();
+    for i in Wheel::all(){
+      if i.value() == n{
+        return Some(i);
+      }
+    }
+    return None;
+  }
+  fn all()->Vec<Wheel>{
+    return vec![
+        Wheel::Standard,
+        Wheel::Monster,
+        Wheel::Roller,
+        Wheel::Slim,
+        Wheel::Slick,
+        Wheel::Metal,
+        Wheel::Button,
+        Wheel::OffRoad,
+        Wheel::Sponge,
+        Wheel::Wood,
+        Wheel::Cushion,
+        Wheel::BlueStandard,
+        Wheel::HotMonster,
+        Wheel::AzureRoller,
+        Wheel::CrimzonSlim,
+        Wheel::CyberSlick,
+        Wheel::RetroOffRoad,
+        Wheel::GoldTires,
+        Wheel::GLATires,
+        Wheel::TriforceTires,
+        Wheel::AncientTires,
+        Wheel::LeafTires,
+    ]
+  }
 }
 
 #[derive(PartialEq, Eq,Clone,Copy)]
@@ -366,5 +627,33 @@ impl Wing{
         Wing::Paraglider    => 13,
         Wing::PaperGlider   => 14,
     }
+  }
+  pub fn from_str(s:&str)->Option<Wing>{
+    let n = s.parse::<usize>().unwrap();
+    for i in Wing::all(){
+      if i.value() == n{
+        return Some(i);
+      }
+    }
+    return None;
+  }
+  fn all() -> Vec<Wing>{
+    return vec![
+        Wing::SuperGlider,
+        Wing::CloudGlider,
+        Wing::WarioWing,
+        Wing::WaddleWing,
+        Wing::PeachParasol,
+        Wing::Parachute,
+        Wing::Parafoil,
+        Wing::FlowerGlider,
+        Wing::BowserKite,
+        Wing::PlaneGlider,
+        Wing::MKTVParafoil,
+        Wing::GoldGlider,
+        Wing::HylianKite,
+        Wing::Paraglider,
+        Wing::PaperGlider,
+    ]
   }
 }

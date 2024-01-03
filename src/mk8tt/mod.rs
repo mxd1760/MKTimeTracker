@@ -1,6 +1,7 @@
 use std::path::Path;
 use std::fs::File;
 use std::io::Write;
+use std::io::prelude::*;
 use chrono;
 
 pub mod consts;
@@ -32,6 +33,14 @@ impl Time{
   pub fn value(&self)->f64{
     return self.minutes as f64*60.+self.seconds as f64+self.miliseconds as f64/1000.;
   }
+  pub fn from_string(s:&str)->Option<Time>{
+    if s.contains(":") && s.contains("."){
+      let mut one = s.split(":").collect::<Vec<&str>>();
+      let mut two = one[1].split(".").collect::<Vec<&str>>();
+      return Some(Time { minutes: one[0].parse::<u8>().unwrap(), seconds: two[0].parse::<u8>().unwrap(), miliseconds: two[1].parse::<u16>().unwrap() });
+    }
+    return None;
+  }
 }
 
 pub struct Entry{
@@ -62,6 +71,18 @@ impl Entry{
       self.wheel.value(),
       self.wing.value(),
       &self.extra);
+  }
+  pub fn from_string(s:&str)->Entry{
+    let elements = s.split(";").collect::<Vec<&str>>();
+    return Entry{ 
+      time: Time::from_string(elements[0]).unwrap(), 
+      date: elements[1].parse().unwrap(), 
+      racer: Character::from_str(elements[2]).unwrap(), 
+      kart: Kart::from_str(elements[3]).unwrap(), 
+      wheel: Wheel::from_str(elements[4]).unwrap(), 
+      wing: Wing::from_str(elements[5]).unwrap(), 
+      extra: elements[6].to_owned()
+    }
   }
 }
 
@@ -97,7 +118,7 @@ impl Mk8ttFile{
       starter = 0;
     }
   }
-  fn to_string(&self)->String {                                                   // TODO test
+  pub fn to_string(&self)->String {                                               // TODO test
     let mut line1 = "".to_owned();
     for i in &self.ids150cc{
       line1.push_str(&i.to_string());
@@ -278,8 +299,59 @@ impl Mk8ttFile{
   
   }
   
-  // pub fn load(filename:&str)->Self{
-  //   //TODO
-  // }
+  pub fn load(file_name:&str)->Option<Self>{
+    let mut fname = file_name.to_owned();
+    if !fname.ends_with(Mk8ttFile::EXTENTION){
+      fname+=Mk8ttFile::EXTENTION;
+    }
+    let path = Path::new(&consts::SAVE_LOCATION).join(&fname);
+    let display = path.display();
+    let mut file = match File::open(&path){
+      Err(why)=> {
+        println!("can't open {}: {}",display,why);
+        return None;
+      },
+      Ok(f)=>f
+    };
+    let mut string = String::new();
+    match file.read_to_string(&mut string){
+      Err(why) => {
+        println!("can't read {}: {}",display,why);
+        return None;
+      }
+      Ok(_)=>{}
+    }
+    let mut lines = string.split("\n").collect::<Vec<&str>>();
+    let cc150 = Mk8ttFile::to_vec(lines[0].split(";").collect::<Vec<&str>>());
+    let cc200 = Mk8ttFile::to_vec(lines[1].split(";").collect::<Vec<&str>>());
+    let spdc = Mk8ttFile::to_vec(lines[2].split(";").collect::<Vec<&str>>());
+    let mut fl = vec![];
+    for n in 3..lines.len(){
+      if lines[n].len()>=3{ // sometimes the lines have nothing.
+        fl.push(Entry::from_string(lines[n]));
+      }
+    }
+
+
+    return Some(Mk8ttFile{
+        filename: fname,
+        ids150cc: cc150,
+        ids200cc: cc200,
+        ids_spdc: spdc,
+        filelines: fl,
+    });
+
+    //TODO test & do better error handling
+  }
+
+  fn to_vec(str_arr:Vec<&str>) -> Vec<usize>{
+    let mut out = vec![];
+    for i in str_arr.iter(){
+      if let Ok(x) = i.parse::<usize>(){
+        out.push(x);
+      }
+    }
+    return out;
+  }
 
 }

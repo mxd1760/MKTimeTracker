@@ -64,6 +64,9 @@ fn main() {
   ));
   x.save();
 
+  let y = Mk8ttFile::load("Bongo").unwrap();
+  println!("{}",y.to_string());
+
   
   let mut win = Mk8ttWindow::new();
 
