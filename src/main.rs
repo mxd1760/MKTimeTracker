@@ -7,6 +7,8 @@
 mod mk8tt;
 use mk8tt::*;
 use mk8tt::consts::*;
+mod gui;
+use gui::*;
 
 fn main() {
     // let now: String = chrono::offset::Utc::now().to_rfc3339();
@@ -63,5 +65,16 @@ fn main() {
   x.save();
 
   
+  let mut win = Mk8ttWindow::new();
+
+  loop{
+    while let Some(event) = win.window.poll_event(){
+      match event{
+        sfml::window::Event::Closed => return,
+        _=>{}
+      }
+    }
+    win.draw();
+  }
 
 }
