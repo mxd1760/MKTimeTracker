@@ -68,7 +68,7 @@ fn main() {
   println!("{}",y.to_string());
 
   
-  let mut win = Mk8ttWindow::new(MK8WinView::Testing);
+  let mut win = Mk8ttWindow::new(Mk8WinView::MainMenu);
 
   loop{
     while let Some(event) = win.window.poll_event(){
