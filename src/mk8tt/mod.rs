@@ -1,11 +1,17 @@
 use std::path::Path;
-use std::fs::File;
+use std::fs::{self,File};
 use std::io::Write;
 use std::io::prelude::*;
 use chrono;
+use directories::ProjectDirs;
 
 pub mod consts;
 use consts::*;
+
+const APP_NAME: &'static str = "Mk8tt";
+const ORG_NAME: &'static str = "MDM";
+const QUALIFIER: &'static str = "com";
+
 
 #[derive(PartialEq, Eq)]
 pub enum CC{
@@ -101,6 +107,21 @@ impl Mk8ttFile{
 }
 
 impl Mk8ttFile{
+  pub fn get_visible_filenames() -> Vec<String>{
+    let mut out:Vec<String> = vec![];
+    if let Some(proj_dirs) = ProjectDirs::from(QUALIFIER,ORG_NAME,APP_NAME){
+      if let Ok(path) = fs::read_dir(proj_dirs.data_dir()){
+        path.for_each(|entry|{
+          let en = entry.unwrap();
+          let ep = en.path();
+          let file_name = ep.file_name().unwrap();
+          let fn_string = file_name.to_str().unwrap();
+          out.push(fn_string.to_owned());
+        })
+      }
+    }
+    return out;
+  }
 
   fn modify_metadata(&mut self,track:&Track,up:bool){                             // TODO test
     let arr = [&mut self.ids150cc,&mut self.ids200cc,&mut self.ids_spdc];
@@ -299,7 +320,7 @@ impl Mk8ttFile{
   
   }
   
-  pub fn load(file_name:&str)->Option<Self>{
+  pub fn load(file_name:&str)->Result<Self,i32>{
     let mut fname = file_name.to_owned();
     if !fname.ends_with(Mk8ttFile::EXTENTION){
       fname+=Mk8ttFile::EXTENTION;
@@ -309,7 +330,7 @@ impl Mk8ttFile{
     let mut file = match File::open(&path){
       Err(why)=> {
         println!("can't open {}: {}",display,why);
-        return None;
+        return Err(0);
       },
       Ok(f)=>f
     };
@@ -317,7 +338,7 @@ impl Mk8ttFile{
     match file.read_to_string(&mut string){
       Err(why) => {
         println!("can't read {}: {}",display,why);
-        return None;
+        return Err(1);
       }
       Ok(_)=>{}
     }
@@ -333,7 +354,7 @@ impl Mk8ttFile{
     }
 
 
-    return Some(Mk8ttFile{
+    return Ok(Mk8ttFile{
         filename: fname,
         ids150cc: cc150,
         ids200cc: cc200,
