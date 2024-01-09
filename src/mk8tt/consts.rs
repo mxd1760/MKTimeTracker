@@ -637,23 +637,24 @@ impl Wing{
     }
     return None;
   }
+  const WINGS:&'static [Wing] = &[
+    Wing::SuperGlider,
+    Wing::CloudGlider,
+    Wing::WarioWing,
+    Wing::WaddleWing,
+    Wing::PeachParasol,
+    Wing::Parachute,
+    Wing::Parafoil,
+    Wing::FlowerGlider,
+    Wing::BowserKite,
+    Wing::PlaneGlider,
+    Wing::MKTVParafoil,
+    Wing::GoldGlider,
+    Wing::HylianKite,
+    Wing::Paraglider,
+    Wing::PaperGlider,
+];
   fn all() -> Vec<Wing>{
-    return vec![
-        Wing::SuperGlider,
-        Wing::CloudGlider,
-        Wing::WarioWing,
-        Wing::WaddleWing,
-        Wing::PeachParasol,
-        Wing::Parachute,
-        Wing::Parafoil,
-        Wing::FlowerGlider,
-        Wing::BowserKite,
-        Wing::PlaneGlider,
-        Wing::MKTVParafoil,
-        Wing::GoldGlider,
-        Wing::HylianKite,
-        Wing::Paraglider,
-        Wing::PaperGlider,
-    ]
+    return Self::WINGS.to_vec()
   }
 }

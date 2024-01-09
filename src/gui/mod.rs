@@ -104,6 +104,16 @@ impl Mk8WinView{
   const MAIN_MENU_HEADER_X2:f32 = 285.;
   const MAIN_MENU_HEADER_Y2:f32 = 70.;
   const MAIN_MENU_BACKSHADOW_OFFSET:f32=2.;
+  const MAIN_MENU_BUTTON1_POS:(f32,f32) = (20.,150.);
+  const MAIN_MENU_BUTTON2_POS:(f32,f32) = (20.,250.);
+  const MAIN_MENU_BUTTON3_POS:(f32,f32) = (20.,350.);
+
+  const MAIN_MENU_30DEG_POLYGON:&'static [(f32,f32)]=&[
+    (0.,0.),(150.,0.),(400.,500.),(0.,500.)
+  ];
+  const MAIN_MENU_SMALL_BUTTON:&'static [(f32,f32)]=&[
+    (0.,0.),(25.,-40.),(225.,-40.),(250.,0.),(225.,40.),(25.,40.)
+  ];
   fn get_elements_from(v:&Mk8WinView) -> Vec<Mk8WinElement>{
     match v{
         Mk8WinView::Testing => vec![
@@ -124,15 +134,13 @@ impl Mk8WinView{
           Mk8WinElement{x:Self::MAIN_MENU_HEADER_X2,y:Self::MAIN_MENU_HEADER_Y2,
             color:Self::SKY,element_type:Mk8WinElementType::Text("Time Tracker App".to_owned(), Self::HEADER_SIZE)}, //text for "Time Tracker App"
           // fancy graph element?
-          Mk8WinElement{x:0.,y:0.,color:Self::LIGHT_SEA,element_type:Mk8WinElementType::Polygon(vec![
-            (0.,0.),(150.,0.),(400.,500.),(0.,500.)
-          ])},// Polygon for side bar
-          // diamond for button1
-          // diamond for button2
-          // diamond for button3
+          Mk8WinElement{x:0.,y:0.,color:Self::LIGHT_SEA,element_type:Mk8WinElementType::Polygon(Self::MAIN_MENU_30DEG_POLYGON.to_vec())},// Polygon for side bar
+          Mk8WinElement{x:Self::MAIN_MENU_BUTTON1_POS.0,y:Self::MAIN_MENU_BUTTON1_POS.1,color:Self::LAND,element_type:Mk8WinElementType::Polygon(Self::MAIN_MENU_SMALL_BUTTON.to_vec())},// diamond for button1
+          Mk8WinElement{x:Self::MAIN_MENU_BUTTON2_POS.0,y:Self::MAIN_MENU_BUTTON2_POS.1,color:Self::LAND,element_type:Mk8WinElementType::Polygon(Self::MAIN_MENU_SMALL_BUTTON.to_vec())},// diamond for button2
+          Mk8WinElement{x:Self::MAIN_MENU_BUTTON3_POS.0,y:Self::MAIN_MENU_BUTTON3_POS.1,color:Self::LAND,element_type:Mk8WinElementType::Polygon(Self::MAIN_MENU_SMALL_BUTTON.to_vec())},// diamond for button3
           // text for button1 
           // text for button2
-          // text for button3
+          // text for button3  
 
         ],
         Mk8WinView::SelectPage => vec![
@@ -146,7 +154,7 @@ impl Mk8WinView{
           // cups (8-12 cup elements that can be rearranged depending on the state of the page)
           // context menu (conditionally rendered context menu)
           // track buttons (4 track buttons to appear on context menu)
-          // tracks (4 track labels to appear on track buttons in context menu)
+          // tracks (4 track labels to appear on track buttons in context menu)   %PROGRAMMING_STUFF%
         ],
         Mk8WinView::TrackSelectPage => todo!(),
         Mk8WinView::FileEditingPage => todo!(),
